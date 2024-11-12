@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Portfolio - Rithwik Bandi</title>
+   
+    <style>
+        .background-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                        url('your-background-image.jpg'); /* <-- Place your image path here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+            padding: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .netflix-logo {
+            color: #E50914;
+            font-size: 2.25rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-section {
+            position: relative;
+            padding-top: 5rem;
+            padding-bottom: 10rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, black, transparent, black);
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 8rem 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            border: 1px solid #ffffff40;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .description {
+            max-width: 48rem;
+            margin-bottom: 2rem;
+            color: #d1d1d1;
+            font-size: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+        }
+
+        .btn-secondary {
+            background: rgba(109, 109, 109, 0.7);
+            color: white;
+        }
+
+        .section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: #333;
+            padding: 2rem;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Social Link Colors */
+        .social-link.github {
+            background: #333; /* GitHub dark color */
+        }
+
+        .social-link.leetcode {
+            background: #FFA116; /* LeetCode yellow */
+        }
+
+        .social-link.hackerrank {
+            background: #0F9D58; /* HackerRank green */
+        }
+
+        .social-link.codechef {
+            background: #0053A0; /* CodeChef blue */
+        }
+
+        .social-link.linkedin {
+            background: #0A66C2; /* LinkedIn blue */
+        }
+
+        .social-link {
+            text-decoration: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .social-link i {
+            font-size: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .nav-link {
+                cursor: pointer;
+            }
+
+            .nav-link:hover {
+                color: #d1d1d1;
+            }
+
+            .hero-content {
+                padding: 8rem 4rem 0;
+            }
+        }
+        .bottom-left-image-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 10px; /* Optional padding */
+        }
+
+        .bottom-left-image-wrapper img {
+            width: 150px; /* Set desired width */
+            height: auto; /* Keep aspect ratio */
+            border-radius: 10px; /* Optional styling */
+        }
+
+        /* Ensuring the body takes full height so the image stays at the bottom */
+        body {
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding-bottom: 160px; /* Optional: space for footer or other bottom content */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="nav-left">
+                <span class="netflix-logo">SRMIST</span>
+                <div class="nav-links">
+                    <span class="nav-link">Home</span>
+                    <span class="nav-link">Projects</span>
+                    <span class="nav-link">Skills</span>
+                    <span class="nav-link">Contact</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-bell"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-bg">
+            <img src="p.jpg" alt="Background">
+        </div>
+        <div class="hero-content">
+            <h1 class="title">Rithwik Bandi (RA2311003010063)</h1>
+
+            <div class="tags">
+                <span class="tag" style="color: #22c55e; font-weight: bold;">98% match</span>
+                <span class="tag">2nd Year</span>
+                <span class="tag">B.Tech CSE </span>
+                
+            </div>
+            <p class="description">
+                Aspiring Software Developer at SRM Institute of Science and Technology, 
+                with a strong foundation in Data Structures and Algorithms. Seeking internship opportunities to apply and 
+                enhance technical skills.
+            </p>
+            <div class="buttons">
+                <button class="btn btn-primary">
+                    ▶ View Projects
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    <span>More Info</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="section">
+        <h2 class="section-title">Popular Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">DSA</div>
+            <div class="skill-card">C++</div>
+            <div class="skill-card">Java</div>
+            <div class="skill-card">OOPS</div>
+            <div class="skill-card">Problem Solving</div>
+            <div class="skill-card">Web Development</div>
+        </div>
+    </div>
+
+    <!-- Social Links Section -->
+    <div class="section">
+        <h2 class="section-title">Connect & Coding Profiles</h2>
+        <div class="social-grid">
+            <a class="social-link github" href="https://github.com/Rithwik20" target="_blank">
+                <i class="fab fa-github"></i>
+                GitHub
+            </a>
+            
+            <a class="social-link hackerrank" href="https://www.hackerrank.com/dashboard" target="_blank">
+                <i class="fab fa-hackerrank"></i>
+                HackerRank
+            </a>
+            <a class="social-link codechef" href="https://www.codechef.com/users/pure_hint_57" target="_blank">
+                <i class="fab fa-codechef"></i>
+                CodeChef
+            </a>
+            <a class="social-link linkedin" href="https://www.linkedin.com/in/rithwik-bandi-323b90314?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank">
+                <i class="fab fa-linkedin"></i>
+                LinkedIn
+            </a>
+        </div>
+    </div>
+    <div class="bottom-left-image-wrapper">
+        <img src="r.jpg" alt="Profile Image">
+    </div>
+
+    <div class="background-wrapper"></div>
+</body>
+</html>
